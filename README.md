@@ -11,7 +11,7 @@
 - [ ] Request/Response handling
 - [ ] Error handling & middleware basics
 ---
-### DAY 1
+### DAY 1 [16-01-2025]
 
 #### Setting up virtual environment
 ```bash
@@ -21,4 +21,4 @@ pip install fastapi[all] uvicorn sqlalchemy python-jose[cryptography] passlib[bc
 pip freeze > requirements.txt
 ```
 
-#### Next step: starting up with fast api configuration using documentation
+#### Next step: Creating first fast api app
