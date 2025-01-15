@@ -4,7 +4,7 @@
 
 ### Weeks 1-2: FastAPI Fundamentals
 #### Core Concepts
-- [ ] Python virtual environments & dependency management
+- [X] Python virtual environments & dependency management
 - [ ] FastAPI project structure
 - [ ] Pydantic models & data validation
 - [ ] Async/await in FastAPI
