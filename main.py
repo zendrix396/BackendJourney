@@ -1,24 +1,27 @@
 from typing import Union
+
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
-# Our "database" of books
-books = {
-    1: {"title": "Harry Potter", "author": "J.K. Rowling"},
-    2: {"title": "Lord of the Rings", "author": "Tolkien"}
-}
+
+class Item(BaseModel):
+    name: str
+    price: float
+    is_offer: Union[bool, None] = None
+
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to our Book API!"}
+    return {"Hello": "World"}
 
-@app.get("/books/{book_id}")
-def read_book(book_id: int, include_author: Union[bool, None] = None):
-    book = books.get(book_id)
-    if not book:
-        return {"error": "Book not found"}
-    
-    if include_author:
-        return book
-    return {"title": book["title"]}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}
+
+
+@app.put("/items/{item_id}")
+def update_item(item_id: int, item: Item):
+    return {"item_name": item.name, "item_id": item_id}
