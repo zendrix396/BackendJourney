@@ -5,8 +5,8 @@
 ### Weeks 1-2: FastAPI Fundamentals
 #### Core Concepts
 - [X] ~~Python virtual environments & dependency management~~
-- [ ] FastAPI project structure
-- [ ] Pydantic models & data validation
+- [X] ~~FastAPI project structure~~
+- [X] ~~Pydantic models & data validation~~
 - [ ] Async/await in FastAPI
 - [ ] Request/Response handling
 - [ ] Error handling & middleware basics
@@ -63,3 +63,22 @@ echo "you should be inside the virtual environment"
 fastapi dev main.py
 
 ```
+
+### Pydantic Usage for Basic Crud like Posting, Updating and Deleting Information
+- importing Optional from typing, BaseModel from pydantic class
+- creating a class for Book and BookUpdate that inherites from BaseModel
+- Dictionary Unwrapping Concept {*a,*b} for BookUpdate method
+- @app.put for update, @app.delete for deletion and @app.post for posting new information
+
+### Important Code Snippets
+```python
+# HTTPException Usage
+if book_id not in books:
+    raise HTTPException(status_code=404, detail="Book not found")
+
+# exclude_unset=True => just contain keys that are being updated
+update_data = book.dict(exclude_unset=True)
+
+```
+
+## Got to know: For Testing api CRUD methods of updating/deleting/putting you can either use curl or localhost:8000/docs/ for the gui interface of testing stuff by swagger
