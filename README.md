@@ -81,7 +81,7 @@ update_data = book.dict(exclude_unset=True)
 
 ```
 
-## Got to know: For Testing api CRUD methods of updating/deleting/putting you can either use curl or localhost:8000/docs/ for the gui interface of testing stuff by swagger
+### Got to know: For Testing api CRUD methods of updating/deleting/putting you can either use curl or localhost:8000/docs/ for the gui interface of testing stuff by swagger
 ---
 ### DAY 2 [17-01-2025]
 
