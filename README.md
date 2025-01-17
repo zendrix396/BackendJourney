@@ -20,5 +20,3 @@
 - We can create methods in 2 ways either with def root() or async def root()
 ### We use async/await when doing io operation (db), fetching api requests or other function responses etc (faster than normal function) => go through AsyncAwaitUsage.py for proper understanding
 - function here are called **path operation function** and decorator is known as **path operation decorator**
-=======
-
