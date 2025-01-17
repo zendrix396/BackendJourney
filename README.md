@@ -1,17 +1,5 @@
 # BACKEND Programming using FAST API
-
-## Target: Implementing REST APIs, CRUD, caching, basic containerization and testing.
-
-### Weeks 1-2: FastAPI Fundamentals
-#### Core Concepts
-- [X] ~~Python virtual environments & dependency management~~
-- [X] ~~FastAPI project structure~~
-- [X] ~~Pydantic models & data validation~~
-- [X] ~~Async/await in FastAPI~~
-- [ ] Request/Response handling
-- [ ] Error handling & middleware basics
----
-
+[Day 1: 16-01-2025]
 ### Pydantic Usage for Basic Crud like Posting, Updating and Deleting Information
 - importing Optional from typing, BaseModel from pydantic class
 - creating a class for Book and BookUpdate that inherites from BaseModel
