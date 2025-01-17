@@ -1,5 +1,5 @@
 # BACKEND Programming using FAST API
-[Day 1: 16-01-2025]
+### [Day 1: 16-01-2025]
 ### Pydantic Usage for Basic Crud like Posting, Updating and Deleting Information
 - importing Optional from typing, BaseModel from pydantic class
 - creating a class for Book and BookUpdate that inherites from BaseModel
