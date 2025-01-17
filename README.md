@@ -1,16 +1,5 @@
 # BACKEND Programming using FAST API
 
-## Target: Implementing REST APIs, CRUD, caching, basic containerization and testing.
-
-### Weeks 1-2: FastAPI Fundamentals
-#### Core Concepts
-- [X] ~~Python virtual environments & dependency management~~
-- [ ] FastAPI project structure
-- [ ] Pydantic models & data validation
-- [ ] Async/await in FastAPI
-- [ ] Request/Response handling
-- [ ] Error handling & middleware basics
----
 ### DAY 1 [16-01-2025]
 
 #### Setting up virtual environment
