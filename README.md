@@ -1,27 +1,19 @@
 # BACKEND Programming using FAST API
 
-### DAY 2 [17-01-2025]
+### DAY 3 [18-01-2025]
 
-Path Parameters Go through
-- if same address in path operation decorator two times the first one is evaluated
-- if two address /users/me and /users/{user_id} two separate users/me should be above /users/{users_id} or user_id="me"
-- using enum to get predefined path parameters. (Example in code). Tne enum class you make contains the pre-defined parameters that can be provided in request, this class inherits from string and enum in our example
-- for storing a path parameter containing a path if you try to do normally (/files/{file_path})it would give not found error, instead try doing (/files/{file_path:path}) so extra ":path" now file_path can contain a file path
+### Query Parameters
+- Parameters that comes after "?" in the url
+- can be of 2 types: required and optional (with default or null value)
+#### Required parameter declaration
+    ```python
+    @app.get("/item/{item_no}/")
+    def func(item_no:str,required_field:int):
+        return {"item":item_no,"required*":required_field}
+    ```
+#### Optional parameters declaration
 ```python
-# creating an enum class
-class PriceRange(str, Enum):
-    BUDGET = "budget"
-    MEDIUM = "medium"
-    PREMIUM = "premium"
-
-# getting a path parameter of path
-@app.get("/path/{file_path:path}")
-def path(file_path:str):
-    return {"file_path":file_path}
-
-```
-
-### We'll discuss query parameters later, end of Day 2!
-
----
-use git rebase -i HEAD~n for combining n previous commits
+    @app.get("/item/{item_no}/")
+    def func(item_no:str,optional_1:int=10,optional_2:bool=false,optional_3:str|None=None): #default value being 10,false and Null respectively, Avoid using just str=None instead str|None=None "Industry Practice"
+        return {"item":item_no,"optional 1":optional_1,"optional 2":optional_2,"optional_3":optional_3}
+    ```

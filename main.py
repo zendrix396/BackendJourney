@@ -1,61 +1,25 @@
 from fastapi import FastAPI
 
+
 app = FastAPI()
 
 @app.get("/")
 def root():
-    return "Welcome to Book Store!"
+    return "Welcome to E-Commerce Website"
 
-# @app.get("/price/high")
-# def cost1():
-#     return "The Book is costly"
-
-# # @app.get("/price/{price}")
-# # def cost(price): # will not give any error if price is not int
-# #     return f"The Book's Price is ${price}"
-@app.get("/price/{price}")
-def cost(price:int): # will give error if price is not int
-    return f"The Book's Price is ${price}"
-
-from enum import Enum # enum is used if you want only specific types of request
-#like for books category if someone is messing around giving weird categories you can create a category enum beforehand so that the request is only within that
-
-# Create an Enum for book categories
-class BookCategory(str, Enum): # Inherits from both str and Enum
-    FICTION = "fiction"
-    NON_FICTION = "non-fiction"
-    SCIENCE = "science"
-    HISTORY = "history"
-
-# Create an Enum for price ranges
-class PriceRange(str, Enum):
-    BUDGET = "budget"
-    MEDIUM = "medium"
-    PREMIUM = "premium"
+@app.get("/category/{category}/feedback/{feedback}/")
+def root(category: str, buy:bool,feedback:str,price:int=1000):
+    return {"Category":category,"Price":price, "BuyOrNot":buy,"Feedback":feedback}
 
 
-# Use the Enum in path parameter
-@app.get("/category/{category}")
-def get_books_by_category(category: BookCategory):
-    if category == BookCategory.FICTION:
-        return "Here are fiction books"
-    elif category == BookCategory.NON_FICTION:
-        return "Here are non-fiction books"
-    elif category == BookCategory.SCIENCE:
-        return "Here are science books"
-    elif category == BookCategory.HISTORY:
-        return "Here are history books"
 
-@app.get("/price-range/{range}")
-def get_books_by_price_range(range: PriceRange):
-    price_ranges = {
-        PriceRange.BUDGET: "Books under $10",
-        PriceRange.MEDIUM: "Books between $10-$30",
-        PriceRange.PREMIUM: "Books over $30"
-    }
-    return price_ranges[range]
-
-@app.get("/path/{file_path:path}")
-def path(file_path:str):
-    return {"file_path":file_path}
-
+# @app.get("/items/{item_id}")
+# async def read_item(item_id: str, q: str | None = None, short: bool = False):
+#     item = {"item_id": item_id}
+#     if q:
+#         item.update({"q": q})
+#     if not short:
+#         item.update(
+#             {"description": "This is an amazing item that has a long description"}
+#         )
+#     return item
