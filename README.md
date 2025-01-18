@@ -1,6 +1,6 @@
 # BACKEND Programming using FAST API
 
-### DAY 3 [18-01-2025]
+### DAY 3 [18-01-2025] => not a very productive day, slacked a little but somehow completed query parameters, simple topic
 
 ### Query Parameters
 - Parameters that comes after "?" in the url
