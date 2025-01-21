@@ -33,3 +33,4 @@ def post_item(item:Item): # where Item is Pydantic BaseModel Class
 
 ![Example of put with query parameter, path parameter along with request body](image.png)
 
+..
