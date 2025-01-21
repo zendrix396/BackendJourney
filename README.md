@@ -32,5 +32,3 @@ def post_item(item:Item): # where Item is Pydantic BaseModel Class
 ### You can use PUT to provide a path parameter along with requesting data from user
 
 ![Example of put with query parameter, path parameter along with request body](image.png)
-
-..
