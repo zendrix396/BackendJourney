@@ -1,19 +1,35 @@
 # BACKEND Programming using FAST API
 
-### DAY 3 [18-01-2025] => not a very productive day, slacked a little but somehow completed query parameters, simple topic
+### DAY 4 [19-01-2025] => MISSED!
+### DAY 5 [20-01-2025] => MISSED!
+### DAY 6 [21-01-2025]
 
-### Query Parameters
-- Parameters that comes after "?" in the url
-- can be of 2 types: required and optional (with default or null value)
-#### Required parameter declaration
+## Request Body
+- You can send them using get (but it's discouraged). Also swagger ui won't show documentation 
+- So we use post, put, delete methods and use Pydantic Model
+- Minor mistake you make: setting default value in pydantic model
 ```python
-@app.get("/item/{item_no}/")
-def func(item_no:str,required_field:int):
-    return {"item":item_no,"required*":required_field}
+discount: float|20.5 # Wrong ❌
+discount: float=20.5 # Right ✅
 ```
-#### Optional parameters declaration
 ```python
-@app.get("/item/{item_no}/")
-def func(item_no:str,optional_1:int=10,optional_2:bool=false,optional_3:str|None=None): #default value being 10,false and Null respectively, Avoid using just str=None instead str|None=None "Industry Practice"
-    return {"item":item_no,"optional 1":optional_1,"optional 2":optional_2,"optional_3":optional_3}
+@app.post("/items/")
+def post_item(item:Item): # where Item is Pydantic BaseModel Class
+    return item # NOT Item
 ```
+- Creating Pydantic model is a good practice and also it gives type support unlike using dict
+- item.model_dump() command to get a dict object of the item Pydantic Class
+
+```python
+    stuff ={"product_id":product_id}
+    stuff.update(product.model_dump())
+    
+    stuff= {"product_id":product_id, **product.model_dump()}
+    # BOTH SAME THINGS
+    # **product.model_dump() => Unpacking the product in stuff dictionary 
+```
+
+### You can use PUT to provide a path parameter along with requesting data from user
+
+![Example of put with query parameter, path parameter along with request body](image.png)
+
