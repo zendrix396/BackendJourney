@@ -3,7 +3,7 @@
 - [X] ~~First Steps~~
 - [X] ~~Path Parameters~~
 - [X] ~~Query Parameters~~
-- [ ] Request Body
+- [X] ~~Request Body~~
 - [ ] Query Parameters and String Validations
 - [ ] Path Parameters and Numeric Validations
 - [ ] Query Parameter Models
