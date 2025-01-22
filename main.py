@@ -30,14 +30,16 @@ def root():
 def update_product(
     product_id: int,
     product: Product,
-    color_variant: Annotated[list[str],Query(default=...)],
-    bought: Annotated[int, Query(ge=20,le=500)]=50, # (optional value set to 50 by default)
+    
+    color_variant: Annotated[list[str],Query(default=..., title="Color Variant",description="Give a color variant")],
+    # title and description keyword inside Query usage above
+    bought: Annotated[int, Query(ge=20,le=500, alias="quantity")]=50, # (optional value set to 50 by default)
     # bought: Annotated[int, Query(ge=20,le=500)]=..., # required value without any default val
     destination: Annotated[str, Query(
         pattern="^[A-Z][a-zA-Z]*(-[A-Z][a-zA-Z]*)+$", # Regex
         description="Hyphen-separated city names with capital letters"
     )]="Ghaziabad-Delhi",
-    available: bool | None = None):
+    available: Annotated[bool | None, Query(deprecated=True)]= None): # using deprecated so you can't add value inside available
 
     stuff = {"product_id": product_id, **product.model_dump()}
     if available:

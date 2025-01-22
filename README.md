@@ -61,3 +61,10 @@ def read_items(q:Annotated[list[str],Query()]=None):
 def read_items(q:list[str]=None) # ❌ will try try to fetch info from request body not url so using Query is necessary
 
 ```
+
+- You can use *title*, *description* and *alias* inside Query()
+```python
+color_variant: Annotated[list[str],Query(default=..., title="Color Variant",description="Give a color variant"), alias="color-variant"],
+# alias will make you use <url>/item/?color-variant=red&color-variant=blue
+```
+
