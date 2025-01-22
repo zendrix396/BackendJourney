@@ -30,6 +30,7 @@ def root():
 def update_product(
     product_id: int,
     product: Product,
+    color_variant: Annotated[list[str],Query(default=...)],
     bought: Annotated[int, Query(ge=20,le=500)]=50, # (optional value set to 50 by default)
     # bought: Annotated[int, Query(ge=20,le=500)]=..., # required value without any default val
     destination: Annotated[str, Query(
@@ -41,6 +42,6 @@ def update_product(
     stuff = {"product_id": product_id, **product.model_dump()}
     if available:
         stuff.update({"is_available": True})
-    stuff.update({"units_bought": bought,"destination": destination.split("-")})
+    stuff.update({"units_bought": bought,"destination": destination.split("-"), "color_varient":color_variant})
     
     return stuff
