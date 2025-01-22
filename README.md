@@ -68,3 +68,5 @@ color_variant: Annotated[list[str],Query(default=..., title="Color Variant",desc
 # alias will make you use <url>/item/?color-variant=red&color-variant=blue
 ```
 
+- Use *deprecated=True* to block entering information inside that query
+- Using *include_in_schema=False* will remove this query entry from automatic documentation altogether (not just block like deprecated)

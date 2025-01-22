@@ -39,7 +39,7 @@ def update_product(
         pattern="^[A-Z][a-zA-Z]*(-[A-Z][a-zA-Z]*)+$", # Regex
         description="Hyphen-separated city names with capital letters"
     )]="Ghaziabad-Delhi",
-    available: Annotated[bool | None, Query(deprecated=True)]= None): # using deprecated so you can't add value inside available
+    available: Annotated[bool | None, Query(deprecated=True, include_in_schema=False)]= None): # using deprecated so you can't add value inside available
 
     stuff = {"product_id": product_id, **product.model_dump()}
     if available:
