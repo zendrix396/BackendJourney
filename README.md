@@ -1,34 +1,44 @@
 # BACKEND Programming using FAST API
 
-### DAY 4 [19-01-2025] => MISSED!
-### DAY 5 [20-01-2025] => MISSED!
-### DAY 6 [21-01-2025]
+### DAY 7 [22-01-2025]
 
-## Request Body
-- You can send them using get (but it's discouraged). Also swagger ui won't show documentation 
-- So we use post, put, delete methods and use Pydantic Model
-- Minor mistake you make: setting default value in pydantic model
+## Query Paramters and String Validation
+- You can limit query (string) given to 50 character using Annotated (typing module) and Query (fastapi)
+### In this example below we are validating a bought query to be between 0 to 500 and default value being 50
 ```python
-discount: float|20.5 # Wrong ❌
-discount: float=20.5 # Right ✅
+# Here Product is the Base Pydantic Model carrying Product Arguments
+@app.put("/products/{product_id}")
+def update_product(product_id:int,product:Product, bought:Annotated[int,Query(ge=0,le=500)]=50):
+    # function stuff
+# here ge=greater than equal to, le=less than equal to
 ```
+### And in the below we are validating a string query 'q' to have less than 50 characters
 ```python
-@app.post("/items/")
-def post_item(item:Item): # where Item is Pydantic BaseModel Class
-    return item # NOT Item
-```
-- Creating Pydantic model is a good practice and also it gives type support unlike using dict
-- item.model_dump() command to get a dict object of the item Pydantic Class
+@app.put("/items/{item_no}")
+def update(item_no:int,q:Annotated[str|None,Query(max_length=50)]=None):
+    #function stuff
 
+q:str|None=None 👎
+q:Annotated[str|None, Query(....)]=None 🔥
+```
+### There were two methods to add query validation (New Method Better Practice)
 ```python
-    stuff ={"product_id":product_id}
-    stuff.update(product.model_dump())
-    
-    stuff= {"product_id":product_id, **product.model_dump()}
-    # BOTH SAME THINGS
-    # **product.model_dump() => Unpacking the product in stuff dictionary 
+
+q:Annotated[str|None,Query(max_length=50)]=None # NEW
+q:str|None=Query(default=None,max_length=50) # OLD
+
+bought:Annotated[int,Query(ge=0,le=500)]=50 # NEW
+bought:int|None=Query(default=50,ge=0,le=500) # OLD
+
+``` 
+
+### Some more query validation that we can use with string instances
+```python
+Annotated[str|None,Query(min_length=3, max_length=50)]=None  #min_length
+Annotated[str|None,Query(pattern="^fixedpattern$")]=None  # using regex with pattern=
+# ^ and $ are start and end of the regex expression
+pattern="^[A-Z][a-zA-Z]*(-[A-Z][a-zA-Z]*)+$"
+# Above pattern means, starting with capital letter followed by 0 or more characters (can be upper or lower) followed by ('-' Hyphen and then again first format like string) '+' means repeat the string inside () so as many hyphen separated city as possible 
 ```
 
-### You can use PUT to provide a path parameter along with requesting data from user
-
-![Example of put with query parameter, path parameter along with request body](image.png)
+![alt text](image.png)
