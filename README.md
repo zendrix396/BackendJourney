@@ -42,3 +42,22 @@ pattern="^[A-Z][a-zA-Z]*(-[A-Z][a-zA-Z]*)+$"
 ```
 
 ![alt text](image.png)
+
+### Two ways of saying a Query parameter is required
+```python
+bought: Annotated[int, Query(ge=20,le=500)]=... # not recommended as no proper swagger documentation
+bought: Annotated[int, Query(ge=20,le=500)]
+# BOTH CONVEY THE SAME THING
+```
+
+### Passing list as Query Parameters
+```python
+@app.get("item/")
+def read_items(q:Annotated[list[str],Query()]=None):
+    query_items = {'q':q}
+    return query_items
+# items/?q=foo&q=bar => ['foo', 'bar']
+
+def read_items(q:list[str]=None) # ❌ will try try to fetch info from request body not url so using Query is necessary
+
+```
